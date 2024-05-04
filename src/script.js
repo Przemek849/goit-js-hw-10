@@ -1,5 +1,5 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { fetchCountries2 } from "./fetchCountries2.js";
+import { fetchCountries } from "./fetchCountries.js";
 import debounce from 'lodash.debounce';
 
 var debounce = require('lodash.debounce');
@@ -56,7 +56,7 @@ const input = text => {
       return;
     }
 
-  fetchCountries2(textValue) 
+  fetchCountries(textValue) 
     .then(data => {
       console.log(data);
       if (data.length > 10) {

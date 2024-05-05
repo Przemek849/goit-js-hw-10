@@ -6,7 +6,7 @@ var debounce = require('lodash.debounce');
 
 const delay = 300;
 
-const searchText = document.querySelector('.search-box');
+const searchText = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
@@ -51,8 +51,8 @@ const input = text => {
   const textValue = text.target.value.trim();
     
   if (!textValue) {
-      clearMarkup(countryList);
-      clearMarkup(countryInfo);
+      clearText(countryList);
+      clearText(countryInfo);
       return;
     }
 
@@ -60,8 +60,8 @@ const input = text => {
     .then(data => {
       console.log(data);
       if (data.length > 10) {
-        clearMarkup(countryList);
-        clearMarkup(countryInfo);
+        clearText(countryList);
+        clearText(countryInfo);
         Notify.info(
           'Too many matches found. Please enter a more specific name'
         );
@@ -70,10 +70,10 @@ const input = text => {
       renderMarkup(data);
       })
       .catch(err => {
-        clearMarkup(countryList);
-        clearMarkup(countryInfo);
+        clearText(countryList);
+        clearText(countryInfo);
         Notify.failure('Oops..., there is no country with that name');
       });
   };
 
-searchText.addEventListener('input', debounce(inputHandler, delay));
+searchText.addEventListener('input', debounce(input, delay));
